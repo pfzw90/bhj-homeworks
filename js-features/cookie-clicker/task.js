@@ -19,12 +19,7 @@ document.getElementById('cookie').onclick = () => {
     if (speedCounter.innerHTML === 0) speedCounter.innerHTML = curSpeed;   
     else speedCounter.innerHTML = ((Number(speedCounter.innerHTML) + Number(curSpeed)) / 2).toFixed(2);
     prevClick = curClick;
-
-    
+ 
     if (document.getElementById('clicker__counter').innerHTML++ % 2 == 0) document.getElementById('cookie').width += 20;
     else document.getElementById('cookie').width -= 20;
-
-
-
-    
- };
+};
