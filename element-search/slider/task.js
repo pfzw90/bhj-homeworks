@@ -20,4 +20,4 @@ const selectSlide = (a, n) => {
 dots[findActive()].classList.add('slider__dot_active');
 Array.from(document.getElementsByClassName('slider__arrow_prev'))[0].onclick = () => selectSlide(findActive(),findNext(findActive(),-1));
 Array.from(document.getElementsByClassName('slider__arrow_next'))[0].onclick = () => selectSlide(findActive(),findNext(findActive(),1));
-dots.forEach((dot, i) => {dot.onclick = () => { selectSlide(findActive(), i);}});
+dots.forEach((dot, i) => {dot.onclick = () => selectSlide(findActive(), i);});
