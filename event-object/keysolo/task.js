@@ -16,16 +16,6 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
-  registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
-  }
-
   success() {
     this.currentSymbol.classList.add('symbol_correct');
     this.currentSymbol = this.currentSymbol.nextElementSibling;
@@ -46,6 +36,16 @@ class Game {
       this.reset();
     }
     this.setNewWord();
+  }
+
+
+  registerEvents() {
+    let game = this;
+    document.addEventListener('keypress', function(ev) {
+      let sym = 'Key' + game.currentSymbol.innerHTML.toUpperCase();
+      if (sym == ev.code && !ev.repeat) game.success();
+      else game.fail();
+    })
   }
 
   setNewWord() {
