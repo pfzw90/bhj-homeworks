@@ -1,6 +1,6 @@
 "use strict";
 
-let bookContent = document.querySelector('.book__content');
+let bookContent = document.getElementById('book');
 console.log(bookContent.classList)
 
 Array.from(document.getElementsByClassName('book__control')).forEach(controlPanel => {
@@ -9,9 +9,7 @@ Array.from(document.getElementsByClassName('book__control')).forEach(controlPane
     let parameter = btns[0].classList[1].replace(/_[a-z]*$/,'');
     let activeClass = parameter.split('_').pop() + '_active';
     let data = parameter.split('-').pop().split('_').join('-');
-    console.log(parameter);
-    console.log(data)
-    console.log(btns)
+
     btns.forEach(a => 
         a.onclick = function(ev) {
             ev.preventDefault();
@@ -23,14 +21,17 @@ Array.from(document.getElementsByClassName('book__control')).forEach(controlPane
 
             let choice = a.getAttribute('data-' + data) 
             let param = parameter.replace('ont-', '').replace('ize','').replace('text_','').replace('_color','')
-            
 
-            
-            if (param !== null) {
+            if (choice !== null) {
                 let newList = Array.from(bookContent.classList).filter(style => style.toString().includes('book_' + param) == false)
                 bookContent.className = '';
                 newList.forEach(el => bookContent.classList.add(el));
                 bookContent.classList.add('book_' + param + '-' + choice)
+            }
+
+            else {
+                bookContent.classList.remove("book_fs-big");
+                bookContent.classList.remove("book_fs-small");
             }
 
         });
