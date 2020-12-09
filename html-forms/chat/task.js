@@ -18,10 +18,19 @@ const printMessage = (clss, field) => {
             <div class="message__time">${now.getHours()}:${now.getMinutes()}</div>
             <div class="message__text">${msgText}</div>
         </div>`
+    Array.from(document.querySelectorAll('.chat-widget__messages > .message')).pop().scrollIntoView();
+}
+
+const setTimer = function(elem) {
+    if (elem.dataset.timer) clearInterval(elem.dataset.timer);
+    elem.dataset.timer = setInterval(printMessage, 10000, '', elem)
 }
 
 document.querySelector('div.chat-widget').addEventListener('click', function() {this.classList.add('chat-widget_active')});
 
+document.getElementById('chat-widget__input').addEventListener('focus', function() {setTimer(this)});
+
 document.getElementById('chat-widget__input').addEventListener('keypress', function(ev) {
-    if (this.value && ev.code == 'Enter') {printMessage('message_client', this); printMessage('', this)}
+    if (this.value && ev.code == 'Enter') {printMessage('message_client', this); printMessage('', this); setTimer(this);}
 });
+
