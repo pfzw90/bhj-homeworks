@@ -20,10 +20,8 @@ const sendAnswer = function(pollId, answerId) {
                 answer.innerText = result['answer'];
                 votes = document.createElement('span');
                 votes.innerText = ' --- ' + ((result['votes'] / totalVotes)*100).toFixed(2) + ' %';
-
                 option.insertAdjacentElement('beforeend', answer);
                 option.insertAdjacentElement('beforeend', votes);
-
                 document.getElementById('poll__answers').insertAdjacentElement('beforeend', option);
             });
         }
@@ -33,7 +31,6 @@ const sendAnswer = function(pollId, answerId) {
 
 
 const showPoll =  function(poll) {
-
         let pollId = poll['id'];
         document.getElementById('poll__title').innerText = poll['data']['title'];
         let answers = poll['data']['answers'];
@@ -56,7 +53,7 @@ pollreq.open('GET', 'https://netology-slow-rest.herokuapp.com/poll.php');
 pollreq.responseType = 'json'
 pollreq.addEventListener('readystatechange', function() {
     if (this.readyState === pollreq.DONE && pollreq.status === 200) {
-        showPoll(pollreq.response) 
+        showPoll(pollreq.response);
     }
-})
-pollreq.send()
+});
+pollreq.send();
