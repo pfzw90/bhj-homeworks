@@ -9,6 +9,5 @@ if (!document.cookie.includes('popupclosed=true')) {
     showPopup();
     Array.from(document.getElementsByClassName('modal__close modal__close_times'))[0].addEventListener('click', function() {
         document.cookie = "popupclosed=true";
-        console.log(document.cookie)
         removePopup();
     });}

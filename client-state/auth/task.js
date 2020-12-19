@@ -6,9 +6,9 @@ const greeting = document.getElementById('welcome');
 const form = document.getElementById('signin__form');
 const show = (item) => { 
     item.classList.add(item.classList[0] + '_active');
-    if (item.id == 'welcome') user_id.innerText = localStorage.id;
+    if (item.id === 'welcome') document.getElementById('user_id').innerText = localStorage.id;
 }
-const hide = (item) => { item.classList.remove(item.classList[0] + '_active') }
+const hide = (item) => { item.classList.remove(item.classList[0] + '_active'); }
        
 let logOutBtn = document.createElement('button');
 logOutBtn.innerText = 'Выйти';
@@ -43,5 +43,10 @@ form.addEventListener('submit', function(ev){
     loginRequest.send(loginForm);
 });
 
-if (localStorage.id) show(greeting);
-else show(login); 
+if (localStorage.id) {
+    show(greeting);
+}
+
+else {
+    show(login);
+} 
